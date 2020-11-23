@@ -4,3 +4,5 @@
 /coverage
 /vendor
 tests/*.log
+.idea
+composer.lock

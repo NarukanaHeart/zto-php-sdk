@@ -35,7 +35,7 @@ class ApiTest extends TestCase
     }
 
     // 沙盒开关
-    private function setSandBox(bool $flag, $sanboxUrl = '')
+    private function setSandBox($flag, $sanboxUrl = '')
     {
         $config = require 'config.php';
 

@@ -35,6 +35,7 @@ class Api extends AbstractAPI
 
         // 沙盒环境
         $this->apiUrl = (isset($config['sandbox']) && $config['sandbox']) ? $config['sandbox_url'] : static::API_URL;
+        parent::__construct($app);
     }
 
     public function __call($method, $args)
@@ -58,7 +59,7 @@ class Api extends AbstractAPI
             'x-datadigest' => $this->signature($params),
         ]));
 
-        $response = $http->post($this->apiUrl.$uri, $params);
+        $response = $http->post($this->apiUrl . $uri, $params);
 
         return json_decode($response->getBody(), true);
     }
@@ -72,7 +73,7 @@ class Api extends AbstractAPI
      */
     protected function signature(array $paramArr)
     {
-        $paramStr = urldecode(http_build_query($paramArr)).$this->apiKey;
+        $paramStr = urldecode(http_build_query($paramArr)) . $this->apiKey;
 
         return base64_encode(md5($paramStr, true));
     }
